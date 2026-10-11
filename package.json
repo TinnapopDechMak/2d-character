@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "node server.mjs",
+    "dev": "node scripts/dev-server.mjs",
     "build": "node build.mjs",
-    "start": "node server.mjs",
     "check": "node --check dist/app.js"
   },
   "engines": {

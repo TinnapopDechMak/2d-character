@@ -32,7 +32,7 @@ npm run dev
 - dist/app.js: renderer, customization, hierarchical transforms, walk cycle
 - dist/index.html: UI
 - dist/style.css: responsive layout
-- server.mjs: development server
+- scripts/dev-server.mjs: local development server only
 
 ภาพเป็น vector วาดด้วย Canvas ไม่ใช่ sprite จาก AI สามารถปรับ shape ใน head/torso/arm/leg ได้
 ตัวละครเป็น front-facing stylized chibi; ปุ่มหันซ้าย/ขวา mirror ภาพ ไม่ใช่ภาพมุมข้างจริง
@@ -42,3 +42,12 @@ JSON ส่งออกเฉพาะ configuration ไม่ได้ส่ง
 PNG ส่งออกเฟรมเดียว; การส่งออก sprite sheet และอัปโหลดชิ้นส่วนภาพเองยังไม่รวมในรุ่นนี้
 
 ทดสอบ syntax/build ด้วย `npm run check` และ `npm run build`
+
+## Vercel deployment troubleshooting
+
+`vercel.json` explicitly selects Other (`framework: null`) and serves only `dist/`.
+The local preview server lives under `scripts/` and is not a serverless entry point.
+If an older deployment shows `500 FUNCTION_INVOCATION_FAILED`, deploy the latest main commit.
+In Vercel Project Settings → Build and Deployment, check Framework Preset = Other,
+Build Command = npm run build, Output Directory = dist, Root Directory = repository root.
+If necessary, use Redeploy on the latest deployment with the build cache disabled.
